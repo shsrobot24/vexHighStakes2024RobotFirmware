@@ -1,7 +1,9 @@
 #include "main.h"
 
-#define LEFT_WHEELS_PORT 1
-#define RIGHT_WHEELS_PORT 10
+#define leftFrontWheelPort 1
+#define leftBackWheelPort 2
+#define rightFrontWheelPort 10
+#define rightBackWheelPort 11
 
 void opcontrol() {
     while (true) {
@@ -10,9 +12,10 @@ void opcontrol() {
         int ly = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
         int ry = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_Y);
         printf("left: (%d, %d)\nright: (%d, %d)\n", lx, ly, rx, ry);
-        right *= -1; // This will reverse the right motor
-        motor_move(LEFT_WHEELS_PORT, ly);
-        motor_move(RIGHT_WHEELS_PORT, ry);
+        motor_move(leftFrontWheelPort, ly);
+        motor_move(leftBackWheelPort, ly);
+        motor_move(rightBackWheelPort, ry);
+        motor_move(rightBackWheelPort, ry);
         delay(2);
     }
 }
